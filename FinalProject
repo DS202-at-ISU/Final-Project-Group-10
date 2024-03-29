@@ -1,0 +1,9 @@
+---
+title: "DS 202 -  Final - Spring 2024"
+author: "Luke Richard"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
