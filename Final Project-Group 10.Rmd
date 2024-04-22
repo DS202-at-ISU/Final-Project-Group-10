@@ -16,3 +16,5 @@ This data set shows the national crash data for motor vehicles from NHTSA. Each 
 
 We intend to study the effects of seatlbelt use in Iowa compared to traffic fatalities and traffic laws.
 
+Link: https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/
+
