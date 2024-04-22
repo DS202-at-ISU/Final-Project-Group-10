@@ -1,6 +1,6 @@
 ---
 title: "Final Project-Group 10"
-author: "Luke Richard, Carter Parks, Carter Wolf, Amanda Ohmer"
+author: "Amanda Ohmer, Carter Parks, Luke Richard, Carter Wolf"
 date: "2024-03-29"
 output: html_document
 ---
@@ -9,11 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**National Vehicle Crash Data**
+# **National Vehicle Crash Data**
 
 
 This data set shows the national crash data for motor vehicles from NHTSA. Each crash recorded has many columns of data, keyed to the "Fatality Analysis Report User Manual". We will first clean the data by picking a specific state to explore, in order to better relate traffic and set belt laws to the data. We expect seatbelt laws to decrease fatal crashes by percentage, but this will be the main purpose of the study.
 
 We intend to study the effects of seatlbelt use in Iowa compared to traffic fatalities and traffic laws.
 
-aaaa
