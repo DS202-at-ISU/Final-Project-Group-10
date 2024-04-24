@@ -6,3 +6,14 @@ This data set shows the national crash data for motor vehicles from NHTSA. Each 
 
 
 Columns we want: State (numerical), crash fatalities (number), 
+
+Potential routes of exploration: 
+-Chance of death based on (speed limit, number of lanes, travel speed, vehicle type, vehicle brand, month, most harmful event, seatbelt/airbag laws, drunk driver, 
+type of license, driver state, height and weight, critical precrash event, avoidance manuevers, hazardous cargo)
+-State average speed at times of crash (can identify based on state, vehicle type)
+-Chance of crash based on previous crashes/speedig/DUIs?
+-Crashes on roadway grades and alignment
+-Number of people involved in crash based on vehicle weight?
+-Quantities of Driver Related Factors
+
+Related Factors- Vehicle Level (includes air bags, seat belts, etc)
