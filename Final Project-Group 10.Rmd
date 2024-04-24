@@ -1,6 +1,6 @@
 ---
 title: "Final Project-Group 10"
-author: "Amanda Ohmer, Carter Parks, Luke Richard, Carter Wolf"
+author: "Luke Richard, Carter Parks, Carter Wolf, Amanda Ohmer"
 date: "2024-03-29"
 output: html_document
 ---
@@ -9,12 +9,62 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# **National Vehicle Crash Data**
+**National Vehicle Crash Data**
 
 
 This data set shows the national crash data for motor vehicles from NHTSA. Each crash recorded has many columns of data, keyed to the "Fatality Analysis Report User Manual". We will first clean the data by picking a specific state to explore, in order to better relate traffic and set belt laws to the data. We expect seatbelt laws to decrease fatal crashes by percentage, but this will be the main purpose of the study.
 
 We intend to study the effects of seatlbelt use in Iowa compared to traffic fatalities and traffic laws.
 
-Link: https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/
+```{r}
+library(dplyr)
+vehicle75 <- read.csv("./FARS1975NationalCSV/VEHICLE.CSV")
+vehicle80 <- read.csv("./FARS1980NationalCSV/VEHICLE.CSV")
+vehicle85 <- read.csv("./FARS1985NationalCSV/VEHICLE.CSV")
+vehicle90 <- read.csv("./FARS1975NationalCSV/VEHICLE.CSV")
+vehicle95 <- read.csv("./FARS1980NationalCSV/VEHICLE.CSV")
+vehicle00 <- read.csv("./FARS1985NationalCSV/VEHICLE.CSV")
+vehicle05 <- read.csv("./FARS1985NationalCSV/VEHICLE.CSV")
+
+vehicle75 <- vehicle75 %>% mutate(year = 1975)
+vehicle80 <- vehicle80 %>% mutate(year = 1980)
+vehicle85 <- vehicle85 %>% mutate(year = 1985)
+vehicle90 <- vehicle90 %>% mutate(year = 1990)
+vehicle95 <- vehicle95 %>% mutate(year = 1995)
+vehicle00 <- vehicle00 %>% mutate(year = 2000)
+vehicle05 <- vehicle05 %>% mutate(year = 2005)
+
+vehicle75 <- vehicle75 %>%
+  select(-CHAS_TR, -MCYCL_TY)
+
+vehicle80 <- vehicle80 %>%
+  select(-CHAS_TR, -MCYCL_TY)
+
+vehicle85 <- vehicle85 %>%
+  select(-HAZ_CARG, -VEH_MAN, -L_CL_VEH, -VIN_BT)
+
+vehicle90 <- vehicle90 %>%
+  select(-CHAS_TR, -MCYCL_TY)
+
+print(names(vehicle75))
+print(nrow(vehicle75))
+print(names(vehicle80))
+print(nrow(vehicle80))
+print(names(vehicle85))
+print(nrow(vehicle85))
+print(names(vehicle90))
+print(nrow(vehicle90))
+print(names(vehicle95))
+print(nrow(vehicle95))
+print(names(vehicle00))
+print(nrow(vehicle00))
+print(names(vehicle05))
+print(nrow(vehicle05))
+
+over_time <- rbind(vehicle75, vehicle80, vehicle85, vehicle90)
+
+print(nrow(over_time))
+```
+
+Link To Data: https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/
 
