@@ -409,6 +409,15 @@ vehicle85 &lt;- vehicle85 %&gt;%
 vehicle90 &lt;- vehicle90 %&gt;%
   select(-CHAS_TR, -MCYCL_TY)
 
+vehicle95 &lt;- vehicle95 %&gt;%
+  select(-CHAS_TR, -MCYCL_TY)
+
+vehicle00 &lt;- vehicle00 %&gt;%
+  select(-HAZ_CARG, -VEH_MAN, -L_CL_VEH, -VIN_BT)
+
+vehicle05 &lt;- vehicle05 %&gt;%
+  select(-HAZ_CARG, -VEH_MAN, -L_CL_VEH, -VIN_BT)
+
 print(names(vehicle75))</code></pre>
 <pre><code>##  [1] &quot;STATE&quot;    &quot;VE_FORMS&quot; &quot;HARM_EV&quot;  &quot;MAN_COLL&quot; &quot;HIT_RUN&quot;  &quot;VEH_NO&quot;  
 ##  [7] &quot;MAKE&quot;     &quot;MODEL&quot;    &quot;BODY_TYP&quot; &quot;MOD_YEAR&quot; &quot;REG_STAT&quot; &quot;ROLLOVER&quot;
@@ -474,52 +483,107 @@ print(names(vehicle75))</code></pre>
 ##  [7] &quot;MAKE&quot;     &quot;MODEL&quot;    &quot;BODY_TYP&quot; &quot;MOD_YEAR&quot; &quot;REG_STAT&quot; &quot;ROLLOVER&quot;
 ## [13] &quot;J_KNIFE&quot;  &quot;TRAV_SP&quot;  &quot;TOW_VEH&quot;  &quot;SPEC_USE&quot; &quot;EMER_USE&quot; &quot;IMPACT1&quot; 
 ## [19] &quot;IMPACT2&quot;  &quot;DEFORMED&quot; &quot;IMPACTS&quot;  &quot;TOWAWAY&quot;  &quot;FIRE_EXP&quot; &quot;OCUPANTS&quot;
-## [25] &quot;DEATHS&quot;   &quot;VEH_CF1&quot;  &quot;VEH_CF2&quot;  &quot;M_HARM&quot;   &quot;CHAS_TR&quot;  &quot;WGTCD_TR&quot;
-## [31] &quot;VIN_LNGT&quot; &quot;VIN_1&quot;    &quot;VIN_2&quot;    &quot;VIN_3&quot;    &quot;VIN_4&quot;    &quot;VIN_5&quot;   
-## [37] &quot;VIN_6&quot;    &quot;VIN_7&quot;    &quot;VIN_8&quot;    &quot;VIN_9&quot;    &quot;VIN_10&quot;   &quot;FLDCD_TR&quot;
-## [43] &quot;MCYCL_TY&quot; &quot;DR_PRES&quot;  &quot;DR_DRINK&quot; &quot;L_STATE&quot;  &quot;L_STATUS&quot; &quot;L_RESTRI&quot;
-## [49] &quot;DR_TRAIN&quot; &quot;VIOL_CHG&quot; &quot;PREV_ACC&quot; &quot;PREV_SUS&quot; &quot;PREV_DWI&quot; &quot;PREV_SPD&quot;
-## [55] &quot;PREV_OTH&quot; &quot;LAST_MO&quot;  &quot;LAST_YR&quot;  &quot;FIRST_MO&quot; &quot;FIRST_YR&quot; &quot;DR_CF1&quot;  
-## [61] &quot;DR_CF2&quot;   &quot;DR_CF3&quot;   &quot;ST_CASE&quot;  &quot;MAK_MOD&quot;  &quot;VIN_WGT&quot;  &quot;WHLBS_SH&quot;
-## [67] &quot;WHLBS_LG&quot; &quot;MCYCL_DS&quot; &quot;VINA_MOD&quot; &quot;SER_TR&quot;   &quot;VIN&quot;      &quot;year&quot;</code></pre>
+## [25] &quot;DEATHS&quot;   &quot;VEH_CF1&quot;  &quot;VEH_CF2&quot;  &quot;M_HARM&quot;   &quot;WGTCD_TR&quot; &quot;VIN_LNGT&quot;
+## [31] &quot;VIN_1&quot;    &quot;VIN_2&quot;    &quot;VIN_3&quot;    &quot;VIN_4&quot;    &quot;VIN_5&quot;    &quot;VIN_6&quot;   
+## [37] &quot;VIN_7&quot;    &quot;VIN_8&quot;    &quot;VIN_9&quot;    &quot;VIN_10&quot;   &quot;FLDCD_TR&quot; &quot;DR_PRES&quot; 
+## [43] &quot;DR_DRINK&quot; &quot;L_STATE&quot;  &quot;L_STATUS&quot; &quot;L_RESTRI&quot; &quot;DR_TRAIN&quot; &quot;VIOL_CHG&quot;
+## [49] &quot;PREV_ACC&quot; &quot;PREV_SUS&quot; &quot;PREV_DWI&quot; &quot;PREV_SPD&quot; &quot;PREV_OTH&quot; &quot;LAST_MO&quot; 
+## [55] &quot;LAST_YR&quot;  &quot;FIRST_MO&quot; &quot;FIRST_YR&quot; &quot;DR_CF1&quot;   &quot;DR_CF2&quot;   &quot;DR_CF3&quot;  
+## [61] &quot;ST_CASE&quot;  &quot;MAK_MOD&quot;  &quot;VIN_WGT&quot;  &quot;WHLBS_SH&quot; &quot;WHLBS_LG&quot; &quot;MCYCL_DS&quot;
+## [67] &quot;VINA_MOD&quot; &quot;SER_TR&quot;   &quot;VIN&quot;      &quot;year&quot;</code></pre>
 <pre class="r"><code>print(nrow(vehicle95))</code></pre>
 <pre><code>## [1] 63485</code></pre>
 <pre class="r"><code>print(names(vehicle00))</code></pre>
 <pre><code>##  [1] &quot;STATE&quot;    &quot;VE_FORMS&quot; &quot;HARM_EV&quot;  &quot;MAN_COLL&quot; &quot;HIT_RUN&quot;  &quot;VEH_NO&quot;  
 ##  [7] &quot;MAKE&quot;     &quot;MODEL&quot;    &quot;BODY_TYP&quot; &quot;MOD_YEAR&quot; &quot;REG_STAT&quot; &quot;ROLLOVER&quot;
-## [13] &quot;J_KNIFE&quot;  &quot;TRAV_SP&quot;  &quot;HAZ_CARG&quot; &quot;TOW_VEH&quot;  &quot;SPEC_USE&quot; &quot;EMER_USE&quot;
-## [19] &quot;IMPACT1&quot;  &quot;IMPACT2&quot;  &quot;DEFORMED&quot; &quot;IMPACTS&quot;  &quot;TOWAWAY&quot;  &quot;FIRE_EXP&quot;
-## [25] &quot;OCUPANTS&quot; &quot;DEATHS&quot;   &quot;VEH_CF1&quot;  &quot;VEH_CF2&quot;  &quot;VEH_MAN&quot;  &quot;M_HARM&quot;  
-## [31] &quot;WGTCD_TR&quot; &quot;VIN_LNGT&quot; &quot;DR_PRES&quot;  &quot;DR_DRINK&quot; &quot;L_STATE&quot;  &quot;L_CL_VEH&quot;
-## [37] &quot;L_STATUS&quot; &quot;L_RESTRI&quot; &quot;DR_TRAIN&quot; &quot;VIOL_CHG&quot; &quot;PREV_ACC&quot; &quot;PREV_SUS&quot;
-## [43] &quot;PREV_DWI&quot; &quot;PREV_SPD&quot; &quot;PREV_OTH&quot; &quot;LAST_MO&quot;  &quot;LAST_YR&quot;  &quot;FIRST_MO&quot;
-## [49] &quot;FIRST_YR&quot; &quot;DR_CF1&quot;   &quot;DR_CF2&quot;   &quot;DR_CF3&quot;   &quot;VIN_1&quot;    &quot;VIN_2&quot;   
-## [55] &quot;VIN_3&quot;    &quot;VIN_4&quot;    &quot;VIN_5&quot;    &quot;VIN_6&quot;    &quot;VIN_7&quot;    &quot;VIN_8&quot;   
-## [61] &quot;VIN_9&quot;    &quot;VIN_10&quot;   &quot;FLDCD_TR&quot; &quot;ST_CASE&quot;  &quot;MAK_MOD&quot;  &quot;VIN_WGT&quot; 
-## [67] &quot;WHLBS_SH&quot; &quot;WHLBS_LG&quot; &quot;MCYCL_DS&quot; &quot;VIN&quot;      &quot;VINA_MOD&quot; &quot;SER_TR&quot;  
-## [73] &quot;VIN_BT&quot;   &quot;year&quot;</code></pre>
+## [13] &quot;J_KNIFE&quot;  &quot;TRAV_SP&quot;  &quot;TOW_VEH&quot;  &quot;SPEC_USE&quot; &quot;EMER_USE&quot; &quot;IMPACT1&quot; 
+## [19] &quot;IMPACT2&quot;  &quot;DEFORMED&quot; &quot;IMPACTS&quot;  &quot;TOWAWAY&quot;  &quot;FIRE_EXP&quot; &quot;OCUPANTS&quot;
+## [25] &quot;DEATHS&quot;   &quot;VEH_CF1&quot;  &quot;VEH_CF2&quot;  &quot;M_HARM&quot;   &quot;WGTCD_TR&quot; &quot;VIN_LNGT&quot;
+## [31] &quot;DR_PRES&quot;  &quot;DR_DRINK&quot; &quot;L_STATE&quot;  &quot;L_STATUS&quot; &quot;L_RESTRI&quot; &quot;DR_TRAIN&quot;
+## [37] &quot;VIOL_CHG&quot; &quot;PREV_ACC&quot; &quot;PREV_SUS&quot; &quot;PREV_DWI&quot; &quot;PREV_SPD&quot; &quot;PREV_OTH&quot;
+## [43] &quot;LAST_MO&quot;  &quot;LAST_YR&quot;  &quot;FIRST_MO&quot; &quot;FIRST_YR&quot; &quot;DR_CF1&quot;   &quot;DR_CF2&quot;  
+## [49] &quot;DR_CF3&quot;   &quot;VIN_1&quot;    &quot;VIN_2&quot;    &quot;VIN_3&quot;    &quot;VIN_4&quot;    &quot;VIN_5&quot;   
+## [55] &quot;VIN_6&quot;    &quot;VIN_7&quot;    &quot;VIN_8&quot;    &quot;VIN_9&quot;    &quot;VIN_10&quot;   &quot;FLDCD_TR&quot;
+## [61] &quot;ST_CASE&quot;  &quot;MAK_MOD&quot;  &quot;VIN_WGT&quot;  &quot;WHLBS_SH&quot; &quot;WHLBS_LG&quot; &quot;MCYCL_DS&quot;
+## [67] &quot;VIN&quot;      &quot;VINA_MOD&quot; &quot;SER_TR&quot;   &quot;year&quot;</code></pre>
 <pre class="r"><code>print(nrow(vehicle00))</code></pre>
 <pre><code>## [1] 58271</code></pre>
 <pre class="r"><code>print(names(vehicle05))</code></pre>
 <pre><code>##  [1] &quot;STATE&quot;    &quot;VE_FORMS&quot; &quot;HARM_EV&quot;  &quot;MAN_COLL&quot; &quot;HIT_RUN&quot;  &quot;VEH_NO&quot;  
 ##  [7] &quot;MAKE&quot;     &quot;MODEL&quot;    &quot;BODY_TYP&quot; &quot;MOD_YEAR&quot; &quot;REG_STAT&quot; &quot;ROLLOVER&quot;
-## [13] &quot;J_KNIFE&quot;  &quot;TRAV_SP&quot;  &quot;HAZ_CARG&quot; &quot;TOW_VEH&quot;  &quot;SPEC_USE&quot; &quot;EMER_USE&quot;
-## [19] &quot;IMPACT1&quot;  &quot;IMPACT2&quot;  &quot;DEFORMED&quot; &quot;IMPACTS&quot;  &quot;TOWAWAY&quot;  &quot;FIRE_EXP&quot;
-## [25] &quot;OCUPANTS&quot; &quot;DEATHS&quot;   &quot;VEH_CF1&quot;  &quot;VEH_CF2&quot;  &quot;VEH_MAN&quot;  &quot;M_HARM&quot;  
-## [31] &quot;WGTCD_TR&quot; &quot;VIN_LNGT&quot; &quot;DR_PRES&quot;  &quot;DR_DRINK&quot; &quot;L_STATE&quot;  &quot;L_CL_VEH&quot;
-## [37] &quot;L_STATUS&quot; &quot;L_RESTRI&quot; &quot;DR_TRAIN&quot; &quot;VIOL_CHG&quot; &quot;PREV_ACC&quot; &quot;PREV_SUS&quot;
-## [43] &quot;PREV_DWI&quot; &quot;PREV_SPD&quot; &quot;PREV_OTH&quot; &quot;LAST_MO&quot;  &quot;LAST_YR&quot;  &quot;FIRST_MO&quot;
-## [49] &quot;FIRST_YR&quot; &quot;DR_CF1&quot;   &quot;DR_CF2&quot;   &quot;DR_CF3&quot;   &quot;VIN_1&quot;    &quot;VIN_2&quot;   
-## [55] &quot;VIN_3&quot;    &quot;VIN_4&quot;    &quot;VIN_5&quot;    &quot;VIN_6&quot;    &quot;VIN_7&quot;    &quot;VIN_8&quot;   
-## [61] &quot;VIN_9&quot;    &quot;VIN_10&quot;   &quot;FLDCD_TR&quot; &quot;ST_CASE&quot;  &quot;MAK_MOD&quot;  &quot;VIN_WGT&quot; 
-## [67] &quot;WHLBS_SH&quot; &quot;WHLBS_LG&quot; &quot;MCYCL_DS&quot; &quot;VIN&quot;      &quot;VINA_MOD&quot; &quot;SER_TR&quot;  
-## [73] &quot;VIN_BT&quot;   &quot;year&quot;</code></pre>
+## [13] &quot;J_KNIFE&quot;  &quot;TRAV_SP&quot;  &quot;TOW_VEH&quot;  &quot;SPEC_USE&quot; &quot;EMER_USE&quot; &quot;IMPACT1&quot; 
+## [19] &quot;IMPACT2&quot;  &quot;DEFORMED&quot; &quot;IMPACTS&quot;  &quot;TOWAWAY&quot;  &quot;FIRE_EXP&quot; &quot;OCUPANTS&quot;
+## [25] &quot;DEATHS&quot;   &quot;VEH_CF1&quot;  &quot;VEH_CF2&quot;  &quot;M_HARM&quot;   &quot;WGTCD_TR&quot; &quot;VIN_LNGT&quot;
+## [31] &quot;DR_PRES&quot;  &quot;DR_DRINK&quot; &quot;L_STATE&quot;  &quot;L_STATUS&quot; &quot;L_RESTRI&quot; &quot;DR_TRAIN&quot;
+## [37] &quot;VIOL_CHG&quot; &quot;PREV_ACC&quot; &quot;PREV_SUS&quot; &quot;PREV_DWI&quot; &quot;PREV_SPD&quot; &quot;PREV_OTH&quot;
+## [43] &quot;LAST_MO&quot;  &quot;LAST_YR&quot;  &quot;FIRST_MO&quot; &quot;FIRST_YR&quot; &quot;DR_CF1&quot;   &quot;DR_CF2&quot;  
+## [49] &quot;DR_CF3&quot;   &quot;VIN_1&quot;    &quot;VIN_2&quot;    &quot;VIN_3&quot;    &quot;VIN_4&quot;    &quot;VIN_5&quot;   
+## [55] &quot;VIN_6&quot;    &quot;VIN_7&quot;    &quot;VIN_8&quot;    &quot;VIN_9&quot;    &quot;VIN_10&quot;   &quot;FLDCD_TR&quot;
+## [61] &quot;ST_CASE&quot;  &quot;MAK_MOD&quot;  &quot;VIN_WGT&quot;  &quot;WHLBS_SH&quot; &quot;WHLBS_LG&quot; &quot;MCYCL_DS&quot;
+## [67] &quot;VIN&quot;      &quot;VINA_MOD&quot; &quot;SER_TR&quot;   &quot;year&quot;</code></pre>
 <pre class="r"><code>print(nrow(vehicle05))</code></pre>
 <pre><code>## [1] 58271</code></pre>
-<pre class="r"><code>over_time &lt;- rbind(vehicle75, vehicle80, vehicle85, vehicle90)
+<pre class="r"><code>over_time &lt;- rbind(vehicle75, vehicle80, vehicle85, vehicle90, vehicle95, vehicle00, vehicle05)
 
-print(nrow(over_time))</code></pre>
-<pre><code>## [1] 232824</code></pre>
+head(over_time)</code></pre>
+<pre><code>##   STATE VE_FORMS HARM_EV MAN_COLL HIT_RUN VEH_NO MAKE MODEL BODY_TYP MOD_YEAR
+## 1     1        3      12        2       0      1   12    10        2       73
+## 2     1        3      12        2       0      2   18    99        2       69
+## 3     1        3      12        2       0      3   12    10        2       69
+## 4     1        1      18        0       0      1   22     9        2       71
+## 5     1        1       1        0       0      1   35    99        2       72
+## 6     1        1      27        0       0      1   22    99        3       60
+##   REG_STAT ROLLOVER J_KNIFE TRAV_SP TOW_VEH SPEC_USE EMER_USE IMPACT1 IMPACT2
+## 1        1       NA      NA      45       0        0       NA       1       1
+## 2        1       NA      NA      50       0        0       NA       1       1
+## 3        1       NA      NA      70       0        0       NA       1       1
+## 4        1       NA      NA      95       0        0       NA      12      12
+## 5        1       NA      NA      70       0        0       NA       0       0
+## 6       47       NA      NA      80       0        0       NA       1       1
+##   DEFORMED IMPACTS TOWAWAY FIRE_EXP OCUPANTS DEATHS VEH_CF1 VEH_CF2 M_HARM
+## 1        2       1       4        0       99      0       0       0     NA
+## 2        6       3       2        0        1      0       0       0     NA
+## 3        6       1       4        0        1      1       0       0     NA
+## 4        6       1       2        1        2      1      99      99     NA
+## 5        6       0       2        0        1      1       0       0     NA
+## 6        6       1       2        0        3      1       0       0     NA
+##   WGTCD_TR VIN_LNGT VIN_1 VIN_2 VIN_3 VIN_4 VIN_5 VIN_6 VIN_7 VIN_8 VIN_9
+## 1       NA        7     3     0     3     5     8     3     3            
+## 2        9       99     9     9     9     9     9     9     9     9     9
+## 3       NA        7     9     8     4     2     F     2     3            
+## 4       NA       13     2     2     3     8     7     1     N     1     1
+## 5        9        9     A     1     2     0     1     0     0     0     0
+## 6        9       99     1     6     0     P     3     0     0     0     0
+##   VIN_10 FLDCD_TR DR_PRES DR_DRINK L_STATE L_STATUS L_RESTRI DR_TRAIN VIOL_CHG
+## 1               *       1        0       1        3        0        9        0
+## 2      9        9       1        0       1        3        0        9        0
+## 3               *       1        0      99        1        0        9        0
+## 4      0        *       1        0       1        3        0        9        0
+## 5               9       1        0       1        3        0        9        0
+## 6               9       1        0      47        1        0        9        0
+##   PREV_ACC PREV_SUS PREV_DWI PREV_SPD PREV_OTH LAST_MO LAST_YR FIRST_MO
+## 1        0        0        0        0        0       0       0        0
+## 2        0        0        0        2        1       2      71        4
+## 3       99       99       99       99       99      99      99       99
+## 4        0        1        0        0        1      12      74        6
+## 5        0        0        0        0        0       0       0        0
+## 6        0        0        0        0        0       0       0        0
+##   FIRST_YR DR_CF1 DR_CF2 DR_CF3 ST_CASE MAK_MOD VIN_WGT WHLBS_SH WHLBS_LG
+## 1        0     99     99     99   10001    1210    3664     1140        0
+## 2       67     99     99     99   10001    1899    9999     9999     9999
+## 3       99     28     44      0   10001    1210    3317     1160        0
+## 4       74     44      0      0   10002    2209    3164     1080        0
+## 5        0     44      6      0   10003    3599    9999     9999     9999
+## 6        0     44      0      0   10004    2299    9999     9999     9999
+##   MCYCL_DS VINA_MOD SER_TR        VIN year
+## 1       NA      GTS    ***    3035833 1975
+## 2     9999      999    999 9999999999 1975
+## 3       NA      TGT    ***    9842F23 1975
+## 4       NA      FBD    *** 223871N110 1975
+## 5     9999      999    999  A12010000 1975
+## 6     9999      999    999  160P30000 1975</code></pre>
+<pre class="r"><code>print(nrow(over_time))</code></pre>
+<pre><code>## [1] 412851</code></pre>
 <p>Link To Data: <a href="https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/" class="uri">https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/</a></p>
 
 
