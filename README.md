@@ -2,7 +2,17 @@
 National Vehicle Crash Data
 Luke Richard, Carter Parks, Carter Wolf, Amanda Ohmer
 
-This data set shows the national crash data for motor vehicles from NHTSA. Each crash recorded has many columns of data, keyed to the "Fatality Analysis Report User Manual". We will first clean the data by picking a specific state to explore, in order to better relate traffic and set belt laws to the data. We expect seatbelt laws to decrease fatal crashes, but this will be the main purpose of the study.
+
+**Introduction**
+
+The goal of this project is to look into crash fatality rates compared to seat belt laws in the United States. The National Highway Traffic Safety Administration (NHTSA) publishes national crash data for motor vehicles for each year with data from the Fatality Analysis Reporting System (FARS). Each crash recorded has many columns of data, keyed to the 'Fatality Analysis Report User Manual' (FARUM).
+
+In order to better relate traffic and seat belt laws to the data, we will explore a select few states specifically. We expect seatbelt law instatements to decrease fatal crashes, and this will be the main purpose of the study. We also want to research different factors related to fatality rate, such as speed, vehicle type, driver impairment, road conditions, and driver specifications. These variables likely have an effect on the outcome of crashes and could provide valuable insight into crash fatality rates. The fatality rate will be defined as the number of fatalities incurred in a crash over the number of total occupants involved. The other factors will then be related to this ratio in order to keep consistancy across our findings.
+
+
+**Data**
+
+The link to the dataset is [](https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/). The NHTSA has data from 1977 to 2022 published as induvidual .CSV files containing the 
 
 
 Cleaning Code:
