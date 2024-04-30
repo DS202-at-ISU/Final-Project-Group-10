@@ -7,18 +7,22 @@ Luke Richard, Carter Parks, Carter Wolf, Amanda Ohmer
 
 The goal of this project is to look into crash fatality rates compared to seat belt laws in the United States. The National Highway Traffic Safety Administration (NHTSA) publishes national crash data for motor vehicles for each year with data from the Fatality Analysis Reporting System (FARS). Each crash recorded has many columns of data, keyed to the 'Fatality Analysis Report User Manual' (FARUM).
 
-In order to better relate traffic and seat belt laws to the data, we will explore a select few states specifically. We expect seatbelt law instatements to decrease fatal crashes, and this will be the main purpose of the study. We also want to research different factors related to fatality rate, such as speed, vehicle type, driver impairment, road conditions, and driver specifications. These variables likely have an effect on the outcome of crashes and could provide valuable insight into crash fatality rates. The fatality rate will be defined as the number of fatalities incurred in a crash over the number of total occupants involved. The other factors will then be related to this ratio in order to keep consistancy across our findings.
+In order to better relate traffic and seat belt laws to the data, we will explore a select few states specifically. We expect seat belt laws to decrease fatal crashes, and this will be the main purpose of the study. We also want to research different factors related to fatality rate, such as speed, vehicle type, driver impairment, road conditions, and driver specifications. These variables likely have an effect on the outcome of crashes and could provide valuable insight into crash fatality rates. The fatality rate will be defined as the number of fatalities incurred in a crash over the number of total occupants involved. The other factors will then be related to this ratio in order to keep consistency across our findings.
 
 
 **Data**
 
-The link to the dataset is [](https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/). The NHTSA has data from 1977 to 2022 published as induvidual .CSV files containing the 
+The link to the dataset is [](https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/). The NHTSA has data from 1977 to 2022 published as individual .ZIP files, each containing multiple .CSV files. We chose to limit our data to the "vehicle"  file, which contains information about the vehicles involved in the crashes, such as vehicle weight, number of occupants, number of fatalities, the state, and the speed limit.
 
+Since there are over 50,000 crashes in each of the "vehicle" files, we chose to limit our data to every 5 years, starting in 1975. This gave us 10 specific years of data. This will be interesting as we can track key variables over the last 45 years, as well as study how seat belt laws (which started in 1984 with New York) effected the fatality rates.
 
-Cleaning Code:
+[Cleaning]
+
+[We also wanted to look at more recent variables involving crash statistics, so we took the last 5 years and created their own dataset. In 2008, the NHTSA decided to merge a few of the .CSV files for each year into the FARS dataset, adding quite a few variables that could be interesting to research.]
+
+**Cleaning Code:**
 
 finalData <- filter(DATAFRAME, `OCUPANTS` != 99 & `OCUPANTS` != 98)
-
 
 
 Variables:
