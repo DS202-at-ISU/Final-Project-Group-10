@@ -102,9 +102,16 @@ fatalfinal <- aggregate(FATALRATE ~ YEAR, filter(finalData, FATALRATE < 10), mea
 fatalfinal$YEAR <- as.numeric(as.character(fatalfinal$YEAR))
 fatalfinal$FATALRATE <- as.numeric(as.character(fatalfinal$FATALRATE))
 
+  #With linear model
 ggplot(data = fatalfinal, aes(x = YEAR, y = FATALRATE)) +
   geom_point() +
   geom_smooth(method = "lm") +
+  labs(title = 'Fatality Rate per Year', x = 'Year', y = 'Fatality Rate') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+  #No model
+ggplot(data = fatalfinal, aes(x = factor(YEAR), y = factor(FATALRATE))) +
+  geom_point() +
   labs(title = 'Fatality Rate per Year', x = 'Year', y = 'Fatality Rate') +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
@@ -136,17 +143,55 @@ ggplot(data = over_time, aes(x = factor(STATE))) +
 
 #New York Graphs
 
-newyork <- filter(finalData, `STATE` == 36)
-newyorkfinal <-  aggregate(FATALRATE ~ YEAR, filter(newyork, FATALRATE < 10), mean)
+newyorkfinal <-  aggregate(FATALRATE ~ YEAR, filter(filter(finalData, `STATE` == 36), FATALRATE < 10), mean)
 
-ggplot(data = newyork, aes(x = factor(YEAR), fill = factor(DEATHS))) + 
+  #New York per year by deaths per crash
+ggplot(data = filter(finalData, `STATE` == 36), aes(x = factor(YEAR), fill = factor(DEATHS))) + 
   geom_bar() +
   labs(title = 'Entries per Year by Deaths per Crash', x = 'Year', y = 'Number of Crashes', fill = 'Number of Deaths') +
   theme(axis.text.x = element_text(hjust = 1))
 
+  #New York over time
 ggplot(data = newyorkfinal, aes(x = factor(YEAR), y=factor(FATALRATE))) + 
   geom_point(show.legend = FALSE) +
   labs(title = 'New York Fatality Rate by Year', x = 'Year', y = 'Fatality Rate') +
   theme(axis.text.x = element_text(hjust = 1))
 
-#Driver was drinking
+#How deformed was vehicle
+ggplot(data = filter(finalData, `DEFORMED` != 9), aes(x = factor(DEFORMED), fill = factor(DEATHS))) + 
+  geom_bar() +
+  labs(title = 'Deaths per crash vs. Deformation Amount', x = 'Deformation Amount', y = 'Number of Crashes') +
+  theme(axis.text.x = element_text(hjust = 1))
+
+#Driver Drinking
+aggregate(FATALRATE ~ DR_DRINK,filter(finalData, `DR_DRINK` !=9 & `FATALRATE` < 10), mean)
+
+#Driver restrictions
+aggregate(FATALRATE ~ L_RESTRI,filter(finalData, `L_RESTRI`<4), mean)
+
+#Speeding
+speed <- aggregate(FATALRATE ~ TRAV_SP,filter(finalData, `TRAV_SP` < 152 & `TRAV_SP` > -1), mean)
+
+ggplot(data = speed, aes(x = factor(TRAV_SP), y = factor(FATALRATE))) +
+  geom_point() +
+  scale_y_discrete(breaks=seq(0,1)) +
+  scale_x_discrete(breaks = every_nth(n = 5)) +
+  labs(title = 'Fatality Rate vs. Travel Speed', x = 'Speed (MPH)', y = 'Fatality Rate') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+#Towing Vehicle
+aggregate(FATALRATE ~ TOW_VEH,filter(finalData, `TOW_VEH`<7), mean)
+
+#Vehicle Body Type
+body <- aggregate(FATALRATE ~ BODY_TYP,filter(finalData, `BODY_TYP`<99), mean)
+
+ggplot(data = filter(body, `FATALRATE` > .5), aes(x = factor(BODY_TYP), y = factor(FATALRATE))) +
+  geom_point() +
+  scale_y_discrete(breaks=seq(0,1)) +
+  scale_x_discrete(breaks = every_nth(n = 5)) +
+  labs(title = 'Fatality Rate per Year', x = 'Year', y = 'Fatality Rate') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+ggplot(data = filter(body, `BODY_TYP` == 4 | `BODY_TYP` == 14 | `BODY_TYP` == 31 | `BODY_TYP` == 50 | `BODY_TYP` == 66 | `BODY_TYP` == 80), aes(x = factor(BODY_TYP), y = factor(FATALRATE))) +
+  geom_point() +
+  labs(title = 'Fatality Rate per Body Type', x = 'Body Type', y = 'Fatality Rate')
