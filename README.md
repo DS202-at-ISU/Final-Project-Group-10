@@ -20,12 +20,11 @@ The link to the dataset is [](https://www.nhtsa.gov/file-downloads?p=nhtsa/downl
 
 Since there are over 50,000 crashes in each of the "vehicle" files, we chose to limit our data to every 5 years, starting in 1975. This gave us 10 specific years of data. This will be interesting as we can track key variables over the last 45 years, as well as study how seat belt laws (which started in 1984 with New York) effected the fatality rates.
 
-[Cleaning]
-
-[We also wanted to look at more recent variables involving crash statistics, so we took the last 5 years and created their own dataset. In 2008, the NHTSA decided to merge a few of the .CSV files for each year into the FARS dataset, adding quite a few variables that could be interesting to research.]
+**Accumulation**
 
 
-Variables:
+
+**Variables:**
 
 OCCUPANTS (75-08) / NUMOCC (09-22) - HOW MANY OCCUPANTS IN THE VEHICLE
 
