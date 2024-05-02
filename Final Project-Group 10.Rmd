@@ -77,12 +77,64 @@ ggplot(data = over_time, aes(x = factor(YEAR), fill = factor(DEATHS))) +
   geom_bar() +
   labs(title = 'Entries per Year by Deaths per Crash', x = 'Year', y = 'Number of Crashes', fill = 'Number of Deaths') +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+```{r}
+statelab <- finalData
+statelab$STATE <- as.factor(statelab$STATE)
+statelab %>% group_by('STATE')
 
 #Entries by State
-ggplot(data = over_time, aes(x = factor(STATE))) + 
+statelab %>% group_by('STATE') %>% 
+  ggplot(aes(x = STATE)) +
   geom_bar() +
   labs(title = 'Entries per Year per State', x = 'State', y = 'Number of Crashes') +
-  theme(axis.text.x = element_text(hjust = 1))
+  scale_x_discrete(labels = c(
+  "1" = "Alabama", "2" = "Alaska", "3" = "American Samoa", "4" = "Arizona",
+  "5" = "Arkansas", "6" = "California", "8" = "Colorado", "9" = "Connecticut",
+  "10" = "Delaware", "11" = "District of Columbia", "12" = "Florida",
+  "13" = "Georgia", "14" = "Guam", "15" = "Hawaii", "16" = "Idaho",
+  "17" = "Illinois", "18" = "Indiana", "19" = "Iowa", "20" = "Kansas",
+  "21" = "Kentucky", "22" = "Louisiana", "23" = "Maine", "24" = "Maryland",
+  "25" = "Massachusetts", "26" = "Michigan", "27" = "Minnesota",
+  "28" = "Mississippi", "29" = "Missouri", "30" = "Montana",
+  "31" = "Nebraska", "32" = "Nevada", "33" = "New Hampshire",
+  "34" = "New Jersey", "35" = "New Mexico", "36" = "New York",
+  "37" = "North Carolina", "38" = "North Dakota", "39" = "Ohio",
+  "40" = "Oklahoma", "41" = "Oregon", "42" = "Pennsylvania",
+  "43" = "Puerto Rico", "44" = "Rhode Island", "45" = "South Carolina",
+  "46" = "South Dakota", "47" = "Tennessee", "48" = "Texas", "49" = "Utah",
+  "50" = "Vermont", "51" = "Virginia", "52" = "Virgin Islands (Since 2004)",
+  "53" = "Washington", "54" = "West Virginia", "55" = "Wisconsin",
+  "56" = "Wyoming")) +
+  theme(axis.text.x = element_text(hjust = 1))+
+  coord_flip()
+
+#Fatality Rate by State
+statelab %>% group_by('STATE', 'FATALRATE') %>% 
+  ggplot(aes(x = STATE)) +
+  geom_bar(aes(weight = statelab$FATALRATE)) +
+  labs(title = 'Entries per Year per State', x = 'State', y = 'Fatality Rate') +
+  scale_x_discrete(labels = c(
+  "1" = "Alabama", "2" = "Alaska", "3" = "American Samoa", "4" = "Arizona",
+  "5" = "Arkansas", "6" = "California", "8" = "Colorado", "9" = "Connecticut",
+  "10" = "Delaware", "11" = "District of Columbia", "12" = "Florida",
+  "13" = "Georgia", "14" = "Guam", "15" = "Hawaii", "16" = "Idaho",
+  "17" = "Illinois", "18" = "Indiana", "19" = "Iowa", "20" = "Kansas",
+  "21" = "Kentucky", "22" = "Louisiana", "23" = "Maine", "24" = "Maryland",
+  "25" = "Massachusetts", "26" = "Michigan", "27" = "Minnesota",
+  "28" = "Mississippi", "29" = "Missouri", "30" = "Montana",
+  "31" = "Nebraska", "32" = "Nevada", "33" = "New Hampshire",
+  "34" = "New Jersey", "35" = "New Mexico", "36" = "New York",
+  "37" = "North Carolina", "38" = "North Dakota", "39" = "Ohio",
+  "40" = "Oklahoma", "41" = "Oregon", "42" = "Pennsylvania",
+  "43" = "Puerto Rico", "44" = "Rhode Island", "45" = "South Carolina",
+  "46" = "South Dakota", "47" = "Tennessee", "48" = "Texas", "49" = "Utah",
+  "50" = "Vermont", "51" = "Virginia", "52" = "Virgin Islands (Since 2004)",
+  "53" = "Washington", "54" = "West Virginia", "55" = "Wisconsin",
+  "56" = "Wyoming")) +
+  coord_flip()
 
 #New York Graphs
 
@@ -100,6 +152,10 @@ ggplot(data = newyorkfinal, aes(x = factor(YEAR), y=factor(FATALRATE))) +
   labs(title = 'New York Fatality Rate by Year', x = 'Year', y = 'Fatality Rate') +
   theme(axis.text.x = element_text(hjust = 1))
 
+```
+This section goes over states, and specifically XXXXX
+
+```{r}
 #How deformed was vehicle
 ggplot(data = filter(finalData, `DEFORMED` != 9), aes(x = factor(DEFORMED), fill = factor(DEATHS))) + 
   geom_bar() +
