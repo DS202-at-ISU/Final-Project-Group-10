@@ -47,6 +47,7 @@ ggplot(data = fatalfinal, aes(x = YEAR, y = FATALRATE)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(title = 'Fatality Rate per Year', x = 'Year', y = 'Fatality Rate') +
+<<<<<<< Updated upstream
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
   #No model
@@ -58,6 +59,12 @@ ggplot(data = fatalfinal, aes(x = factor(YEAR), y = factor(FATALRATE))) +
 ```
 
 As we can see, fatality rate seems to have increased slightly over the last 50 years. However it's important to recognize the scale of the y axis, which indicates this is a marginal change.
+=======
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+As we can see, fatality rate seems to have increased slightly over the last 50 years. However it's important to recognize the scale of the y axis, which indicates this is a marginal, yet recognizable change.
+>>>>>>> Stashed changes
 
 ```{r}
 #Fatality Rate per Model Year of Vehicle
@@ -77,6 +84,10 @@ ggplot(data = modelfinal, aes(x = factor(MOD_YEAR), y = factor(FATALRATE))) +
 ```
 
 This is one of the more interesting graphs we have. Vehicles made before 1975 have considerably higher fatality rates compared to modern vehicles. You can also notice a gradual reduction in fatality rate for vehicles made between 1980 and 2020
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 ```{r}
 #Entries by Death per Crash
 ggplot(data = over_time, aes(x = factor(YEAR), fill = factor(DEATHS))) + 
@@ -110,6 +121,7 @@ ggplot(data = newyorkfinal, aes(x = factor(YEAR), y=factor(FATALRATE))) +
 ggplot(data = filter(finalData, `DEFORMED` != 9), aes(x = factor(DEFORMED), fill = factor(DEATHS))) + 
   geom_bar() +
   labs(title = 'Deaths per crash vs. Deformation Amount', x = 'Deformation Amount', y = 'Number of Crashes') +
+<<<<<<< Updated upstream
   theme(axis.text.x = element_text(hjust = 1))
 
 #Driver Drinking
@@ -118,6 +130,29 @@ aggregate(FATALRATE ~ DR_DRINK,filter(finalData, `DR_DRINK` !=9 & `FATALRATE` < 
 #Driver restrictions
 aggregate(FATALRATE ~ L_RESTRI,filter(finalData, `L_RESTRI`<4), mean)
 
+=======
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_discrete(labels = c("0" = "No Damage", "2" = "Minor Damage", "4" = "Functional Damage", "6" = "Disabling Damage", "8" = "Not Recorded"))
+```
+
+This chart shows that for most entries, the vehicles were left in a disabled state, but there are also crashes recorded with more minor damage. In addition, we see that most crashes with disabling damage have zero or one death associated with the crash. It seems few crashes record 2 or more deaths.
+
+```{r}
+speedBins<- filter(finalData, TRAV_SP != 98 & TRAV_SP != 99)
+
+speedBins <- mutate(speedBins, Speed_Bin = cut(TRAV_SP, breaks = seq(0, 100, by = 10), labels = paste(seq(0, 90, by = 10), "-", seq(10, 100, by = 10))))
+
+# Plot the grouped bar chart
+ggplot(speedBins, aes(x = Speed_Bin)) + 
+  geom_bar() +
+  labs(title = 'Number of Entries Grouped by Speed', x = 'Speed Bin', y = 'Number of Entries')
+
+```
+
+Here, we see all entries grouped by vehicle speed at the time of the crash. The majority of crashes take place at highway speeds and many were unknown.
+
+```{r}
+>>>>>>> Stashed changes
 #Speeding
 speed <- aggregate(FATALRATE ~ TRAV_SP,filter(finalData, `TRAV_SP` < 152 & `TRAV_SP` > -1), mean)
 
@@ -127,13 +162,37 @@ ggplot(data = speed, aes(x = factor(TRAV_SP), y = factor(FATALRATE))) +
   scale_x_discrete(breaks = every_nth(n = 5)) +
   labs(title = 'Fatality Rate vs. Travel Speed', x = 'Speed (MPH)', y = 'Fatality Rate') +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+<<<<<<< Updated upstream
 
+=======
+```
+
+This graph shows the average fatality rate by vehicle speed at the time of crash. We notice fatality rate begin to rise around 40 to 50 mph all the way up to 100 mph. At high speeds, there are limited entries and the outliers seem to spread out the data points- leading to unclear data above 100 mph.
+
+```{r}
+#Driver Drinking
+aggregate(FATALRATE ~ DR_DRINK,filter(finalData, `DR_DRINK` !=9 & `FATALRATE` < 10), mean)
+```
+
+Occupants of a vehicle are twice as likely to die in a crash if the driver is drunk.
+
+```{r}
+#Driver restrictions
+aggregate(FATALRATE ~ L_RESTRI,filter(finalData, `L_RESTRI`<4), mean)
+
+```
+
+Here, driver restrictions include any vision, curfew, or vehicle restrictions on a driver's licence. 0 and 1 correspond to restrictions being followed, 2 means restrictions were broken, and 3 means restrictions unknown. We notice accidents are 10 percent more fatal if the driver is breaking restrictions.
+
+```{r}
+>>>>>>> Stashed changes
 #Towing Vehicle
 aggregate(FATALRATE ~ TOW_VEH,filter(finalData, `TOW_VEH`<7), mean)
 
 #Vehicle Body Type
 body <- aggregate(FATALRATE ~ BODY_TYP,filter(finalData, `BODY_TYP`<99), mean)
 
+<<<<<<< Updated upstream
 ggplot(data = filter(body, `FATALRATE` > .5), aes(x = factor(BODY_TYP), y = factor(FATALRATE))) +
   geom_point() +
   scale_y_discrete(breaks=seq(0,1)) +
@@ -158,6 +217,13 @@ ggplot(year_groups, aes(x = factor(YEAR), fill = factor(COLOR_GROUP))) +
        x = "Year",
        y = "Number of Car Crashes") +
   theme_minimal()
+=======
+ggplot(data = filter(body, `BODY_TYP` == 1 | `BODY_TYP` == 4 | `BODY_TYP` == 80 | `BODY_TYP` == 50 | `BODY_TYP` == 10), aes(x = factor(BODY_TYP), y = factor(FATALRATE))) +
+  geom_point() +
+  labs(title = 'Fatality Rate per Body Type', x = 'Body Type', y = 'Fatality Rate') +
+  scale_x_discrete(labels = c("1" = "Convertible", "4" = "Sedan", "80" = "Motorcycle", "50" = "Buses and Heavy Trucks", "10" = "Pickups")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+>>>>>>> Stashed changes
 ```
 
 Link To Data: https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/
