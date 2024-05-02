@@ -33,7 +33,7 @@ REG_STAT - WHAT STATE THE VEHICLE WAS REGISTERED TO
 
 OWNER - WAS THE OWNER DRIVING
 
-MAKE (75-90) (91-22) - BRAND OF VEHICLE
+MAKE (75-90) (91-22) - YEAR OF VEHICLE
 
 BODY_TYP (75-81) (82-90) (91-09) (10-16) (20-22) - BODY TYPE OF VEHICLE
 
@@ -47,7 +47,7 @@ TRAV_SP (75-08) (09-17) (18-22) - SPEED OF VEHICLE AT TIME OF COLLSION
 
 IMPACT1 (only use values 1-14) - WHERE WAS VEHICLE HIT
 
-DEFORMED (75-08) (10-17) (18-22) - HOW SAMAGED WAS VEHICLE
+DEFORMED (75-08) (10-17) (18-22) - HOW DAMAGED WAS VEHICLE
 
 M_HARM (75-81) (82-03) (04-09) (10-12) (13-16) (17-22) - MOST HARMFUL EVENT, MIGHT BE TOO DIFFICULT TO BE WORTH DOING
 
@@ -89,7 +89,7 @@ type of license, driver state, height and weight, critical precrash event, avoid
 
 -State average speed at times of crash (can identify based on state, vehicle type)
 
--Chance of crash based on previous crashes/speedig/DUIs?
+-Chance of crash based on previous crashes/speeding/DUIs?
 
 -Crashes on roadway grades and alignment
 
