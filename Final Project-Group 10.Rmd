@@ -30,7 +30,7 @@ ggplot(data = over_time, aes(x = factor(YEAR))) +
 
 ```
 
-Entries per year remained somewhat consistent, with around 60,000 crashes recorded each year. However there was a considerable dip in entries for 2010 and the following years.
+Crash entries per year remained somewhat consistent, with around 60,000 crashes recorded each year. However there was a considerable dip in entries for 2010 and the following years.
 
 ```{r}
 #Fatality Rate By Year
