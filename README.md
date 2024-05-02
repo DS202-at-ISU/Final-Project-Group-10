@@ -21,9 +21,7 @@ The link to the dataset is [](https://www.nhtsa.gov/file-downloads?p=nhtsa/downl
 Since there are over 50,000 crashes in each of the "vehicle" files, we chose to limit our data to every 5 years, starting in 1975. This gave us 10 specific years of data. This will be interesting as we can track key variables over the last 45 years, as well as study how seat belt laws (which started in 1984 with New York) effected the fatality rates.
 
 **Accumulation**
-
-
-
+Since each of the "vehicle" files were in their own YEAR.zip file, they needed to be brought together for processing. To do this, the 10 years that we picked were downloaded  from NHTSA and unzipped, then brought into RStudio individually as .csv files. Since the schemas changed over time, we removed columns from each specific year that were not important and edited inconsistent columns to give them a standardized format. The 10 tables were then merged together to create a master data set to carry out processing on.
 **Variables:**
 
 OCCUPANTS (75-08) / NUMOCC (09-22) - HOW MANY OCCUPANTS IN THE VEHICLE
@@ -96,5 +94,10 @@ type of license, driver state, height and weight, critical precrash event, avoid
 
 -Quantities of Driver Related Factors
 
-
 Related Factors- Vehicle Level (includes air bags, seat belts, etc)
+
+
+
+**Findings**
+
+**Conclusion**
