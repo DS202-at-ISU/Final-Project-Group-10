@@ -103,3 +103,13 @@ Related Factors- Vehicle Level (includes air bags, seat belts, etc)
 **Findings**
 
 **Conclusion**
+
+Overall, our findings were slightly different from what we set out to see from the beginning. We expected to see a drop in fatality rate around 1980, when seatbelt laws first started getting made, but this was not apparent in our data. One thing we failed to take into account was how the data is being collected, as all of the recorded crashes were recorded by police on the scene. This means less serious crashes where fatalities are not present are much less likely to show up in the FARS data. The total population also is not a variable in the FARS data, and the US population has increased by over 125 million in the past 50 years [1] . With more people in the US, there are more drivers on the roads, increasing the probability of a crash occurring. Over the timespan of our data, the total  vehicle miles traveled in the US increased from 1.3 billion miles to 3.2 billion, an increase of 146% [2]. In addition to an increase in miles traveled, the speed limit has been continuously on a rise since 1983 [3]. When fuel prices and scarcity problems were rising in 1974, a national speed limit of 55 MPH was adopted. In the 80s, fuel prices were less of a concern, and the speed limit was raised to 65 MPH on interstates. Speed limit lawmaking was returned to the states in 1995, and the limits have since increased, with texas having speed limits of 85 MPH on some inter-city roads. Our data showed that higher vehicle travel speeds drastically increase fatality rates, and the US is continuously driving faster. With modern vehicles being safer and more fuel efficient, it makes it easier to drive longer and faster, and more people are driving than ever. Understanding how these variables affect each other is critical to making US roads safer, and developing effective strategies for reducing fatality rates.
+
+
+[1] https://www.census.gov/popclock/
+
+[2] https://en.wikipedia.org/wiki/Motor_vehicle_fatality_rate_in_U.S._by_year
+
+[3] https://blog.americansafetycouncil.com/the-history-of-speed-limits-in-america/#:~:text=The%20National%20Limit%20of%2055,for%20all%20states%20in%201974.
+
