@@ -359,8 +359,132 @@ Ohmer</h4>
 
 
 <p><strong>National Vehicle Crash Data</strong></p>
-<p>Our data set contains national crash data for motor vehicles from
-NHTSA compiled from 1975-2020; the data can be found here: <a href="https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/" class="uri">https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/FARS/</a>.</p>
+<p><strong>Introduction</strong></p>
+<p>The goal of this project is to look into crash fatality rates
+compared to recorded variables in the United States. The National
+Highway Traffic Safety Administration (NHTSA) publishes national crash
+data for motor vehicles for each year with data from the Fatality
+Analysis Reporting System (FARS). Each crash recorded has many columns
+of data, keyed to the ‘Fatality Analysis Report User Manual’
+(FARUM).</p>
+<p>Through our research, we wanted to compare different factors related
+to fatality rate, such as speed, vehicle type, driver impairment, road
+conditions, and driver specifications. These variables likely have an
+effect on the outcome of crashes and could provide valuable insight into
+crash fatality rates. The fatality rate will be defined as the number of
+fatalities incurred in a crash over the number of total occupants
+involved. The other factors will then be related to this ratio in order
+to keep consistency across our findings.</p>
+<p><strong>Data</strong></p>
+<p>The link to the dataset is . The NHTSA has data from 1977 to 2022
+published as individual .ZIP files, each containing multiple .CSV files.
+We chose to limit our data to the “vehicle” file, which contains
+information about the vehicles involved in the crashes, such as vehicle
+weight, number of occupants, number of fatalities, state where the crash
+occured, and the speed limit.</p>
+<p>Since there are over 50,000 crashes in each of the “vehicle” files,
+we chose to limit our data to every 5 years, starting in 1975. This gave
+us 10 specific years of data. This will be interesting as we can track
+key variables over the last 45 years which should provide some insight
+into advances in safety and crash trends over time.</p>
+<p><strong>Accumulation</strong></p>
+<p>Since each of the “vehicle” files were in their own YEAR.zip file,
+they needed to be brought together for processing. To do this, the 10
+years that we picked were downloaded from NHTSA and unzipped, then
+brought into RStudio individually as .csv files. Since the schemas
+changed over time, we removed columns from each specific year that were
+not important and edited inconsistent columns to give them a
+standardized format. The 10 tables were then merged together to create a
+master data set to carry out processing on.</p>
+<p>library(dplyr) vehicle75 &lt;-
+read.csv(“./FARS1975NationalCSV/VEHICLE.CSV”) vehicle80 &lt;-
+read.csv(“./FARS1980NationalCSV/VEHICLE.CSV”) vehicle85 &lt;-
+read.csv(“./FARS1985NationalCSV/VEHICLE.CSV”) vehicle90 &lt;-
+read.csv(“./FARS1990NationalCSV/VEHICLE.CSV”) vehicle95 &lt;-
+read.csv(“./FARS1995NationalCSV/VEHICLE.CSV”) vehicle00 &lt;-
+read.csv(“./FARS2000NationalCSV/VEHICLE.CSV”) vehicle05 &lt;-
+read.csv(“./FARS2005NationalCSV/VEHICLE.CSV”) vehicle10 &lt;-
+read.csv(“./FARS2010NationalCSV/VEHICLE.CSV”) vehicle15 &lt;-
+read.csv(“./FARS2015NationalCSV/vehicle.CSV”) vehicle20 &lt;-
+read.csv(“./FARS2020NationalCSV/vehicle.CSV”)</p>
+<p>vehicle75 &lt;- vehicle75 %&gt;% mutate(YEAR = 1975) vehicle80 &lt;-
+vehicle80 %&gt;% mutate(YEAR = 1980) vehicle85 &lt;- vehicle85 %&gt;%
+mutate(YEAR = 1985) vehicle90 &lt;- vehicle90 %&gt;% mutate(YEAR = 1990)
+vehicle95 &lt;- vehicle95 %&gt;% mutate(YEAR = 1995) vehicle00 &lt;-
+vehicle00 %&gt;% mutate(YEAR = 2000) vehicle05 &lt;- vehicle05 %&gt;%
+mutate(YEAR = 2005) vehicle10 &lt;- vehicle10 %&gt;% mutate(YEAR = 2010)
+vehicle15 &lt;- vehicle15 %&gt;% mutate(YEAR = 2015) vehicle20 &lt;-
+vehicle20 %&gt;% mutate(YEAR = 2020)</p>
+<p>vehicle75 &lt;- vehicle75 %&gt;% select(-CHAS_TR, -MCYCL_TY,
+-DR_TRAIN, -VIOL_CHG, -FLDCD_TR, -IMPACTS, -TOWAWAY, -VEH_CF1, -VEH_CF2,
+-DR_CF1, -DR_CF2, -DR_CF3, -IMPACT2, -WGTCD_TR, -VIN_LNGT, -VIN_WGT,
+-WHLBS_SH, -WHLBS_LG, -MCYCL_DS, -SER_TR, -VINA_MOD, -PREV_SUS)</p>
+<p>vehicle80 &lt;- vehicle80 %&gt;% select(-CHAS_TR, -MCYCL_TY,
+-DR_TRAIN, -VIOL_CHG, -FLDCD_TR, -IMPACTS, -TOWAWAY, -VEH_CF1, -VEH_CF2,
+-DR_CF1, -DR_CF2, -DR_CF3, -IMPACT2, -WGTCD_TR, -VIN_LNGT, -VIN_WGT,
+-WHLBS_SH, -WHLBS_LG, -MCYCL_DS, -SER_TR, -VINA_MOD, -PREV_SUS)</p>
+<p>vehicle85 &lt;- vehicle85 %&gt;% select(-HAZ_CARG, -VEH_MAN,
+-L_CL_VEH, -VIN_BT, -DR_TRAIN, -VIOL_CHG, -FLDCD_TR, -IMPACTS, -TOWAWAY,
+-VEH_CF1, -VEH_CF2, -DR_CF1, -DR_CF2, -DR_CF3, -IMPACT2, -WGTCD_TR,
+-VIN_LNGT, -VIN_WGT, -WHLBS_SH, -WHLBS_LG, -MCYCL_DS, -SER_TR,
+-VINA_MOD, -PREV_SUS)</p>
+<p>vehicle90 &lt;- vehicle90 %&gt;% select(-HAZ_CARG, -VEH_MAN,
+-L_COMPL, -DR_ZIP, -VIN_BT, -VIOL_CHG, -FLDCD_TR, -IMPACTS, -TOWAWAY,
+-VEH_CF1, -VEH_CF2, -DR_CF1, -DR_CF2, -DR_CF3, -IMPACT2, -WGTCD_TR,
+-VIN_LNGT, -VIN_WGT, -WHLBS_SH, -WHLBS_LG, -MCYCL_DS, -SER_TR,
+-VINA_MOD, -PREV_SUS)</p>
+<p>vehicle95 &lt;- vehicle95 %&gt;% select(-MONTH, -UNDERIDE, -VIN_11,
+-VIN_12, -HAZ_CARG, -VEH_MAN, -L_COMPL, -DR_ZIP, -VIN_BT, -OWNER,
+-V_CONFIG, -AXLES, -CARGO_BT, -AVOID, -CDL_STAT, -L_ENDORS, -VIOL_CHG,
+-FLDCD_TR, -IMPACTS, -TOWAWAY, -VEH_CF1, -VEH_CF2, -DR_CF1, -DR_CF2,
+-DR_CF3, -IMPACT2, -WGTCD_TR, -VIN_LNGT, -VIN_WGT, -WHLBS_SH, -WHLBS_LG,
+-MCYCL_DS, -SER_TR, -VINA_MOD, -PREV_SUS)</p>
+<p>vehicle00 &lt;- vehicle00 %&gt;% select(-MONTH, -UNDERIDE, -VIN_11,
+-VIN_12, -HAZ_CARG, -VEH_MAN, -L_COMPL, -DR_ZIP, -VIN_BT, -OWNER,
+-V_CONFIG, -AXLES, -CARGO_BT, -AVOID, -CDL_STAT, -L_ENDORS, -BUS_USE,
+-GVWR, -MCARR_ID, -VIOLCHG1, -VIOLCHG2, -VIOLCHG3, -DR_CF4, -DR_WGT,
+-DR_HGT, -FLDCD_TR, -IMPACTS, -TOWAWAY, -VEH_CF1, -VEH_CF2, -DR_CF1,
+-DR_CF2, -DR_CF3, -IMPACT2, -WGTCD_TR, -VIN_LNGT, -VIN_WGT, -WHLBS_SH,
+-WHLBS_LG, -MCYCL_DS, -SER_TR, -VINA_MOD, -PREV_SUS)</p>
+<p>vehicle05 &lt;- vehicle05 %&gt;% select(-MONTH, -UNDERIDE, -VIN_11,
+-VIN_12, -HAZ_CARG, -VEH_MAN, -L_COMPL, -DR_ZIP, -VIN_BT, -OWNER,
+-V_CONFIG, -AXLES, -CARGO_BT, -AVOID, -CDL_STAT, -L_ENDORS, -BUS_USE,
+-GVWR, -MCARR_ID, -VIOLCHG1, -VIOLCHG2, -VIOLCHG3, -DR_CF4, -DR_WGT,
+-DR_HGT, -SEQ1, -SEQ2, -SEQ3, -SEQ4, -SEQ5, -SEQ6, -UNITTYPE, -L_TYPE,
+-FLDCD_TR, -IMPACTS, -TOWAWAY, -VEH_CF1, -VEH_CF2, -DR_CF1, -DR_CF2,
+-DR_CF3, -IMPACT2, -WGTCD_TR, -VIN_LNGT, -VIN_WGT, -WHLBS_SH, -WHLBS_LG,
+-MCYCL_DS, -SER_TR, -VINA_MOD, -PREV_SUS)</p>
+<p>vehicle10 &lt;- vehicle10 %&gt;% rename(OCUPANTS = NUMOCCS)</p>
+<p>vehicle10 &lt;- vehicle10 %&gt;% select(-MONTH, -UNDERIDE, -VIN_11,
+-VIN_12, -L_COMPL, -DR_ZIP, -VIN_BT, -OWNER, -V_CONFIG, -CARGO_BT,
+-CDL_STAT, -L_ENDORS, -BUS_USE, -GVWR, -MCARR_ID, -DR_WGT, -DR_HGT,
+-UNITTYPE, -L_TYPE, -DAY, -HOUR, -MINUTE, -VINTYPE, -VINMAKE, -VINMODYR,
+-FUELCODE, -MCARR_I1, -MCARR_I2, -HAZ_INV, -HAZ_PLAC, -HAZ_ID, -HAZ_CNO,
+-HAZ_REL, -ROLINLOC, -TOWED, -VEH_SC1, -VEH_SC2, -SPEEDREL, -DR_SF1,
+-DR_SF2, -DR_SF3, -DR_SF4, -VTRAFWAY, -VNUM_LAN, -VSPD_LIM, -VALIGN,
+-VPROFILE, -VPAVETYP, -VSURCOND, -VTRAFCON, -VTCONT_F, -P_CRASH1,
+-P_CRASH2, -P_CRASH3, -PCRASH4, -PCRASH5, -ACC_TYPE, -IMPACT2,
+-WGTCD_TR, -VIN_LNGT, -VIN_WGT, -WHLBS_SH, -WHLBS_LG, -MCYCL_DS,
+-SER_TR, -VINA_MOD, -PREV_SUS)</p>
+<p>vehicle15 &lt;- vehicle15 %&gt;% rename(OCUPANTS = NUMOCCS)</p>
+<p>columns_15 &lt;- colnames(vehicle15) columns_00 &lt;-
+colnames(vehicle00)</p>
+<div id="find-the-common-columns" class="section level1">
+<h1>Find the common columns</h1>
+<p>common_columns &lt;- intersect(columns_15, columns_00)</p>
+</div>
+<div id="select-only-the-common-columns-from-the-first-table" class="section level1">
+<h1>Select only the common columns from the first table</h1>
+<p>vehicle15 &lt;- vehicle15[, common_columns]</p>
+<p>vehicle20 &lt;- vehicle20 %&gt;% rename(OCUPANTS = NUMOCCS)</p>
+<p>columns_20 &lt;- colnames(vehicle20)</p>
+<p>common_columns &lt;- intersect(columns_20, columns_00)</p>
+<p>vehicle20 &lt;- vehicle20[, common_columns]</p>
+<p>over_time &lt;- rbind(vehicle75, vehicle80, vehicle85, vehicle90,
+vehicle95, vehicle00, vehicle05, vehicle10, vehicle15, vehicle20)</p>
+<p>print(nrow(over_time))</p>
+<p>over_time</p>
+<p>write.csv(over_time, file=“75-20_Data.csv”, row.names = FALSE)</p>
 <p>We began by importing tables in 5 year increments, giving us a table
 containing data points from 10 different years (1975, 1980, …, 2020).
 The entire table included around 550,000 records of crash data, each
@@ -604,9 +728,37 @@ comes to the safety of it’s occupants. Motorcycle crashes were
 particularly dangerous, with 9 fatalities for every 10 motorcycle
 crashes recorded. Classes of trucks were considerably safer than other
 vehicles.</p>
-<p>Overall our findings were slightly different from what we set out to
+<p>Conclusion</p>
+<p>Overall, our findings were slightly different from what we set out to
 see from the beginning. We expected to see a drop in fatality rate
-around 1980, when seatbelt laws</p>
+around 1980, when seatbelt laws first started getting made, but this was
+not apparent in our data. One thing we failed to take into account was
+how the data is being collected, as all of the recorded crashes were
+recorded by police on the scene. This means less serious crashes where
+fatalities are not present are much less likely to show up in the FARS
+data. The total population also is not a variable in the FARS data, and
+the US population has increased by over 125 million in the past 50 years
+[1] . With more people in the US, there are more drivers on the roads,
+increasing the probability of a crash occurring. Over the timespan of
+our data, the total vehicle miles traveled in the US increased from 1.3
+billion miles to 3.2 billion, an increase of 146% [2]. In addition to an
+increase in miles traveled, the speed limit has been continuously on a
+rise since 1983 [3]. When fuel prices and scarcity problems were rising
+in 1974, a national speed limit of 55 MPH was adopted. In the 80s, fuel
+prices were less of a concern, and the speed limit was raised to 65 MPH
+on interstates. Speed limit lawmaking was returned to the states in
+1995, and the limits have since increased, with texas having speed
+limits of 85 MPH on some inter-city roads. Our data showed that higher
+vehicle travel speeds drastically increase fatality rates, and the US is
+continuously driving faster. With modern vehicles being safer and more
+fuel efficient, it makes it easier to drive longer and faster, and more
+people are driving than ever. Understanding how these variables affect
+each other is critical to making US roads safer, and developing
+effective strategies for reducing fatality rates.</p>
+<p>[1] <a href="https://www.census.gov/popclock/" class="uri">https://www.census.gov/popclock/</a></p>
+<p>[2] <a href="https://en.wikipedia.org/wiki/Motor_vehicle_fatality_rate_in_U.S._by_year" class="uri">https://en.wikipedia.org/wiki/Motor_vehicle_fatality_rate_in_U.S._by_year</a></p>
+<p>[3] <a href="https://blog.americansafetycouncil.com/the-history-of-speed-limits-in-america/#" class="uri">https://blog.americansafetycouncil.com/the-history-of-speed-limits-in-america/#</a>:~:text=The%20National%20Limit%20of%2055,for%20all%20states%20in%201974.</p>
+</div>
 
 
 
