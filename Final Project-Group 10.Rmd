@@ -13,11 +13,13 @@ library(ggplot2)
 
 **National Vehicle Crash Data**
 
+
 **Introduction**
 
 The goal of this project is to look into crash fatality rates compared to recorded variables in the United States. The National Highway Traffic Safety Administration (NHTSA) publishes national crash data for motor vehicles for each year with data from the Fatality Analysis Reporting System (FARS). Each crash recorded has many columns of data, keyed to the 'Fatality Analysis Report User Manual' (FARUM).
 
 Through our research, we wanted to compare different factors related to fatality rate, such as speed, vehicle type, driver impairment, road conditions, and driver specifications. These variables likely have an effect on the outcome of crashes and could provide valuable insight into crash fatality rates. The fatality rate will be defined as the number of fatalities incurred in a crash over the number of total occupants involved. The other factors will then be related to this ratio in order to keep consistency across our findings.
+
 
 **Data**
 
@@ -25,7 +27,10 @@ The link to the dataset is . The NHTSA has data from 1977 to 2022 published as i
 
 Since there are over 50,000 crashes in each of the "vehicle" files, we chose to limit our data to every 5 years, starting in 1975. This gave us 10 specific years of data. This will be interesting as we can track key variables over the last 45 years which should provide some insight into advances in safety and crash trends over time.
 
+
 **Accumulation**
+
+Since each of the "vehicle" files were in their own YEAR.zip file, they needed to be brought together for processing. To do this, the 10 years that we picked were downloaded from NHTSA and unzipped, then brought into RStudio individually as .csv files. Since the schemas changed over time, we removed columns from each specific year that were not important and edited inconsistent columns to give them a standardized format. The 10 tables were then merged together to create a master data set to carry out processing on.
 
 We began by importing tables in 5 year increments, giving us a table containing data points from 10 different years (1975, 1980, ..., 2020). The entire table included around 550,000 records of crash data, each with 52 columns of information, which are keyed to in the "Fatality Analysis Report User Manual" pdf. This data accumulation was done with the script stored in accumulation.R; that script creates 75-20_Data.csv which is read by this Rmd file.
 
