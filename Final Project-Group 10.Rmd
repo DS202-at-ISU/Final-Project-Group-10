@@ -126,11 +126,12 @@ Importing tables in 5 year increments gave us a table containing data points fro
 
 We set out with the intention of understanding how seatbelt laws effect fatality percentage in severe crashes. We intend to study the effects of seatbelt use nationwide, and on a state by state basis - looking out for correlations between state seatbelt laws and fatality percentage.
 
+**Findings**
+
 First we import the data, and begin to understand the dataset:
 
 ```{r}
 over_time <- read.csv("./75-20_Data.csv")
-
 
 #Entries Per Year
 ggplot(data = over_time, aes(x = factor(YEAR))) + 
@@ -142,6 +143,8 @@ ggplot(data = over_time, aes(x = factor(YEAR))) +
 
 Crash entries per year remained somewhat consistent, with around 60,000 crashes recorded each year. However there was a considerable dip in entries for 2010 and the following years.
 
+In order to find the fatality rate, the number of deaths in a crash is devided by the number of occupants in the crash. Each crash will have a fatality rate, and a new column is made to store this number.
+
 ```{r}
 #Fatality Rate By Year
 finalData <- filter(over_time, `OCUPANTS` != 99 & `OCUPANTS` != 98)
@@ -151,7 +154,10 @@ fatalfinal <- aggregate(FATALRATE ~ YEAR, filter(finalData, FATALRATE < 10), mea
 
 fatalfinal$YEAR <- as.numeric(as.character(fatalfinal$YEAR))
 fatalfinal$FATALRATE <- as.numeric(as.character(fatalfinal$FATALRATE))
+```
+With fatality rate stored as FATALRATE, we can then create graphs to show aggregated fatality rates based on different variables.
 
+```{r}
   #With linear model
 ggplot(data = fatalfinal, aes(x = YEAR, y = FATALRATE)) +
   geom_point() +
