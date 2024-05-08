@@ -224,7 +224,7 @@ avg_fatalrate <- statelab %>%
   summarize(avg_fatalrate = mean(FATALRATE))
 
 # Create a bar plot
-ggplot(avg_fatalrate, aes(x = STATE, y = avg_fatalrate)) +
+ggplot(avg_fatalrate, aes(x = reorder(STATE, avg_fatalrate), y = avg_fatalrate)) +
   geom_bar(stat = "identity") +
   labs(title = 'Fatality Rate per State', x = 'State', y = 'Fatality Rate') +
   scale_x_discrete(labels = c(
